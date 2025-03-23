@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crypto Casino</title>
+    <title>Lucky Apex Casino</title>
     <style>
         :root {
             --primary: #1e0e3e;
@@ -15,39 +15,84 @@
             --card-bg: rgba(30, 14, 62, 0.8);
             --card-border: rgba(106, 27, 154, 0.5);
         }
-
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
+        
         body {
             background: linear-gradient(135deg, var(--primary), var(--dark));
             color: var(--text);
             min-height: 100vh;
             padding-bottom: 80px;
         }
-
+        
         .container {
             max-width: 480px;
             margin: 0 auto;
             padding: 0 16px;
         }
-
-        /* Header Styles */
-        header {
-            padding: 20px 0;
+        
+        /* Logo and Branding */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 16px 0;
+        }
+        
+        .logo {
+            font-size: 26px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            background: linear-gradient(to right, var(--gold), #ff9800);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
             position: relative;
         }
-
+        
+        .logo::before {
+            content: "♠";
+            font-size: 20px;
+            margin-right: 6px;
+            -webkit-text-fill-color: var(--gold);
+        }
+        
+        .logo::after {
+            content: "♦";
+            font-size: 20px;
+            margin-left: 6px;
+            -webkit-text-fill-color: var(--accent);
+        }
+        
+        .logo-tagline {
+            font-size: 12px;
+            opacity: 0.8;
+            text-align: center;
+            letter-spacing: 1px;
+            margin-top: -5px;
+            margin-bottom: 14px;
+        }
+        
+        /* Header Styles */
+        header {
+            padding: 10px 0 20px;
+            position: relative;
+        }
+        
         .profile-section {
             display: flex;
             align-items: center;
             margin-bottom: 16px;
         }
-
+        
         .profile-pic {
             width: 50px;
             height: 50px;
@@ -60,23 +105,23 @@
             align-items: center;
             justify-content: center;
         }
-
+        
         .profile-pic img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-
+        
         .user-info h2 {
             font-size: 18px;
             margin-bottom: 2px;
         }
-
+        
         .user-id {
             font-size: 12px;
             opacity: 0.7;
         }
-
+        
         /* Balance Card */
         .balance-card {
             background: linear-gradient(135deg, var(--secondary), var(--primary));
@@ -88,7 +133,7 @@
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-
+        
         .balance-card::before {
             content: "";
             position: absolute;
@@ -99,7 +144,18 @@
             background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 60%);
             z-index: 0;
         }
-
+        
+        .lucky-apex-card-logo {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 12px;
+            opacity: 0.6;
+            z-index: 1;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        
         .balance-label {
             font-size: 14px;
             opacity: 0.8;
@@ -108,7 +164,7 @@
             position: relative;
             z-index: 1;
         }
-
+        
         .balance-amount {
             font-size: 28px;
             font-weight: 700;
@@ -118,20 +174,20 @@
             display: flex;
             align-items: center;
         }
-
+        
         .currency-icon {
             font-size: 20px;
             margin-right: 6px;
             color: var(--gold);
         }
-
+        
         .balance-actions {
             display: flex;
             gap: 12px;
             position: relative;
             z-index: 1;
         }
-
+        
         .balance-btn {
             flex: 1;
             padding: 10px;
@@ -147,16 +203,16 @@
             justify-content: center;
             gap: 6px;
         }
-
+        
         .balance-btn:hover {
             background: rgba(255, 255, 255, 0.25);
             transform: translateY(-2px);
         }
-
+        
         .balance-btn i {
             font-size: 16px;
         }
-
+        
         /* Game Section */
         .section-title {
             font-size: 20px;
@@ -166,18 +222,18 @@
             align-items: center;
             gap: 8px;
         }
-
+        
         .section-title i {
             color: var(--gold);
         }
-
+        
         .games-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 16px;
             margin-bottom: 24px;
         }
-
+        
         .game-card {
             background: var(--card-bg);
             border-radius: 12px;
@@ -188,13 +244,13 @@
             border: 1px solid var(--card-border);
             height: 180px;
         }
-
+        
         .game-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
             border-color: var(--accent);
         }
-
+        
         .game-image {
             height: 120px;
             width: 100%;
@@ -202,7 +258,7 @@
             background-position: center;
             position: relative;
         }
-
+        
         .game-image::after {
             content: "";
             position: absolute;
@@ -212,23 +268,23 @@
             height: 40px;
             background: linear-gradient(to top, var(--card-bg), transparent);
         }
-
+        
         .game-info {
             padding: 12px;
             position: relative;
         }
-
+        
         .game-name {
             font-size: 14px;
             font-weight: 600;
             margin-bottom: 4px;
         }
-
+        
         .game-type {
             font-size: 12px;
             opacity: 0.7;
         }
-
+        
         .hot-tag {
             position: absolute;
             top: 10px;
@@ -241,7 +297,21 @@
             border-radius: 4px;
             text-transform: uppercase;
         }
-
+        
+        .apex-tag {
+            position: absolute;
+            bottom: 125px;
+            left: -30px;
+            background: var(--gold);
+            color: var(--dark);
+            font-size: 9px;
+            font-weight: 700;
+            padding: 2px 30px;
+            transform: rotate(-45deg);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
         /* Promotions */
         .promo-banner {
             background: linear-gradient(135deg, #2d0a5e, #6a1b9a);
@@ -255,7 +325,7 @@
             position: relative;
             overflow: hidden;
         }
-
+        
         .promo-banner::before {
             content: '';
             position: absolute;
@@ -267,7 +337,7 @@
             background-size: 100px;
             opacity: 0.3;
         }
-
+        
         .promo-icon {
             width: 50px;
             height: 50px;
@@ -281,23 +351,23 @@
             position: relative;
             z-index: 1;
         }
-
+        
         .promo-content {
             flex: 1;
             position: relative;
             z-index: 1;
         }
-
+        
         .promo-title {
             font-weight: 600;
             margin-bottom: 4px;
         }
-
+        
         .promo-desc {
             font-size: 12px;
             opacity: 0.8;
         }
-
+        
         /* Navigation */
         .bottom-nav {
             position: fixed;
@@ -313,7 +383,7 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
             z-index: 100;
         }
-
+        
         .nav-item {
             display: flex;
             flex-direction: column;
@@ -321,7 +391,7 @@
             gap: 4px;
             width: 60px;
         }
-
+        
         .nav-icon {
             width: 24px;
             height: 24px;
@@ -331,28 +401,53 @@
             font-size: 20px;
             color: rgba(255, 255, 255, 0.7);
         }
-
+        
         .nav-text {
             font-size: 10px;
             color: rgba(255, 255, 255, 0.7);
         }
-
+        
         .nav-item.active .nav-icon,
         .nav-item.active .nav-text {
             color: var(--accent);
         }
-
+        
         /* Animation */
         @keyframes pulse {
             0% { transform: scale(1); }
             50% { transform: scale(1.05); }
             100% { transform: scale(1); }
         }
-
+        
         .pulse-animation {
             animation: pulse 2s infinite;
         }
-
+        
+        @keyframes shimmer {
+            0% { background-position: -100% 0; }
+            100% { background-position: 200% 0; }
+        }
+        
+        .shimmer-effect {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .shimmer-effect::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                rgba(255,255,255,0) 0%, 
+                rgba(255,255,255,0.2) 50%, 
+                rgba(255,255,255,0) 100%);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite;
+        }
+        
         /* Crypto Icons */
         .crypto-icon {
             width: 24px;
@@ -364,7 +459,7 @@
             vertical-align: middle;
             margin-right: 4px;
         }
-
+        
         /* Loading */
         .loader {
             width: 100%;
@@ -378,7 +473,34 @@
             flex-direction: column;
             gap: 20px;
         }
-
+        
+        .loader-logo {
+            font-size: 36px;
+            font-weight: 800;
+            background: linear-gradient(to right, var(--gold), #ff9800);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            position: relative;
+            margin-bottom: 10px;
+        }
+        
+        .loader-logo::before {
+            content: "♠";
+            font-size: 30px;
+            margin-right: 8px;
+            -webkit-text-fill-color: var(--gold);
+        }
+        
+        .loader-logo::after {
+            content: "♦";
+            font-size: 30px;
+            margin-left: 8px;
+            -webkit-text-fill-color: var(--accent);
+        }
+        
         .loader-spinner {
             width: 50px;
             height: 50px;
@@ -387,11 +509,11 @@
             border-top-color: var(--accent);
             animation: spin 1s ease-in-out infinite;
         }
-
+        
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
-
+        
         .loader-text {
             font-size: 16px;
             opacity: 0.8;
@@ -400,11 +522,17 @@
 </head>
 <body>
     <div id="loader" class="loader">
+        <div class="loader-logo">LUCKY APEX</div>
         <div class="loader-spinner"></div>
-        <div class="loader-text">Loading Casino...</div>
+        <div class="loader-text">Preparing your games...</div>
     </div>
 
     <div class="container">
+        <div class="logo-container">
+            <div class="logo">LUCKY APEX</div>
+        </div>
+        <div class="logo-tagline">WHERE FORTUNE FAVORS THE BOLD</div>
+        
         <header>
             <div class="profile-section">
                 <div class="profile-pic">
@@ -417,8 +545,9 @@
                 </div>
             </div>
         </header>
-
+        
         <div class="balance-card">
+            <div class="lucky-apex-card-logo">LUCKY APEX</div>
             <div class="balance-label">Your Balance</div>
             <div class="balance-amount">
                 <i class="currency-icon">₿</i>
@@ -433,83 +562,84 @@
                 </button>
             </div>
         </div>
-
+        
         <div class="section-title">
-            <i>🎲</i> Popular Games
+            <i>🎲</i> Lucky Apex Exclusives
         </div>
-
+        
         <div class="games-grid">
             <div class="game-card" data-game="poker">
                 <div class="game-image" style="background-image: url('/api/placeholder/200/120');"></div>
                 <div class="game-info">
-                    <div class="game-name">Crypto Poker</div>
+                    <div class="game-name">Apex Poker Royal</div>
                     <div class="game-type">Card Game</div>
                 </div>
                 <div class="hot-tag">Hot</div>
+                <div class="apex-tag">Exclusive</div>
             </div>
-
+            
             <div class="game-card" data-game="blackjack">
                 <div class="game-image" style="background-image: url('/api/placeholder/200/120');"></div>
                 <div class="game-info">
-                    <div class="game-name">Blackjack</div>
+                    <div class="game-name">Lucky 21</div>
                     <div class="game-type">Card Game</div>
                 </div>
             </div>
-
+            
             <div class="game-card" data-game="roulette">
                 <div class="game-image" style="background-image: url('/api/placeholder/200/120');"></div>
                 <div class="game-info">
-                    <div class="game-name">Crypto Roulette</div>
+                    <div class="game-name">Apex Roulette</div>
                     <div class="game-type">Table Game</div>
                 </div>
             </div>
-
+            
             <div class="game-card" data-game="slots">
                 <div class="game-image" style="background-image: url('/api/placeholder/200/120');"></div>
                 <div class="game-info">
-                    <div class="game-name">Bitcoin Slots</div>
+                    <div class="game-name">Lucky Fortune Slots</div>
                     <div class="game-type">Slot Machine</div>
                 </div>
                 <div class="hot-tag">New</div>
             </div>
         </div>
-
+        
         <div class="section-title">
-            <i>🎁</i> Promotions
+            <i>🎁</i> Lucky Offers
         </div>
-
+        
         <div class="promo-banner pulse-animation">
             <div class="promo-icon">🚀</div>
             <div class="promo-content">
-                <div class="promo-title">Welcome Bonus: 100% Match</div>
-                <div class="promo-desc">Deposit crypto now and double your balance instantly!</div>
+                <div class="promo-title">Lucky Apex Welcome: 200% Match</div>
+                <div class="promo-desc">Deposit crypto now and triple your luck instantly!</div>
             </div>
         </div>
-
+        
         <div class="section-title">
-            <i>🏆</i> Tournaments
+            <i>🏆</i> Apex Tournaments
         </div>
-
+        
         <div class="games-grid">
             <div class="game-card" data-game="tournament">
                 <div class="game-image" style="background-image: url('/api/placeholder/200/120');"></div>
                 <div class="game-info">
-                    <div class="game-name">Weekend Poker Battle</div>
+                    <div class="game-name">Apex Weekend Battle</div>
                     <div class="game-type">10 BTC Prize Pool</div>
                 </div>
                 <div class="hot-tag">Live</div>
             </div>
-
-            <div class="game-card" data-game="tournament">
+            
+            <div class="game-card shimmer-effect" data-game="tournament">
                 <div class="game-image" style="background-image: url('/api/placeholder/200/120');"></div>
                 <div class="game-info">
-                    <div class="game-name">High Roller Club</div>
-                    <div class="game-type">VIP Tournament</div>
+                    <div class="game-name">VIP Lucky Lounge</div>
+                    <div class="game-type">High Stakes Tournament</div>
                 </div>
             </div>
         </div>
     </div>
-
+    
     <nav class="bottom-nav">
         <div class="nav-item active">
             <div class="nav-icon">🏠</div>
@@ -541,9 +671,9 @@
                 initDataUnsafe: {
                     user: {
                         id: 12345678,
-                        first_name: 'Casino',
+                        first_name: 'Lucky',
                         last_name: 'Player',
-                        username: 'cryptoplayer',
+                        username: 'luckyplayer',
                         language_code: 'en'
                     }
                 },
@@ -563,7 +693,7 @@
         function formatCrypto(amount) {
             return parseFloat(amount).toFixed(4);
         }
-
+        
         function showNotification(message) {
             // Implementation would go here
             console.log('Notification:', message);
@@ -576,13 +706,13 @@
             setTimeout(() => {
                 document.getElementById('loader').style.display = 'none';
             }, 1500);
-
+            
             // Set up user profile from Telegram
             initUserProfile();
-
+            
             // Add event listeners
             addEventListeners();
-
+            
             // Initialize games
             initGames();
         });
@@ -593,15 +723,15 @@
                 const user = telegram.WebApp.initDataUnsafe.user;
                 document.getElementById('username').textContent = `${user.first_name} ${user.last_name || ''}`;
                 document.getElementById('user-id').textContent = `@${user.username || user.id}`;
-
+                
                 // In a real app, you would get the profile picture from Telegram
                 // For now, we'll just keep the placeholder
             } else {
                 // Fallback for testing outside Telegram
-                document.getElementById('username').textContent = 'Demo User';
-                document.getElementById('user-id').textContent = '@demouser';
+                document.getElementById('username').textContent = 'Lucky Player';
+                document.getElementById('user-id').textContent = '@luckyplayer';
             }
-
+            
             // Set initial balance (in a real app, would come from server)
             document.getElementById('balance-amount').textContent = formatCrypto(0.0025);
         }
@@ -611,12 +741,12 @@
             document.getElementById('deposit-btn').addEventListener('click', function() {
                 showDepositModal();
             });
-
+            
             // Withdraw button
             document.getElementById('withdraw-btn').addEventListener('click', function() {
                 showWithdrawModal();
             });
-
+            
             // Navigation items
             document.querySelectorAll('.nav-item').forEach(item => {
                 item.addEventListener('click', function() {
@@ -624,14 +754,14 @@
                     document.querySelectorAll('.nav-item').forEach(navItem => {
                         navItem.classList.remove('active');
                     });
-
+                    
                     // Add active class to clicked item
                     this.classList.add('active');
-
+                    
                     // Handle navigation (would implement page switching in real app)
                     const navType = this.querySelector('.nav-text').textContent.toLowerCase();
                     console.log(`Navigating to: ${navType}`);
-
+                    
                     // Simulated navigation feedback
                     if (navType !== 'home') {
                         showNotification(`${navType} section coming soon!`);
@@ -646,7 +776,7 @@
                 card.addEventListener('click', function() {
                     const gameType = this.getAttribute('data-game');
                     const gameName = this.querySelector('.game-name').textContent;
-
+                    
                     console.log(`Opening game: ${gameName} (${gameType})`);
                     showNotification(`Opening ${gameName}... Feature coming soon!`);
                 });
@@ -657,14 +787,14 @@
             // In a real app, this would open a modal with crypto deposit options
             // For demo purposes, we'll just simulate a deposit
             showNotification('Deposit feature coming soon! Choose BTC, ETH, USDT, or other cryptocurrencies.');
-
+            
             // In a real app, this would integrate with Telegram's payment API or external crypto services
         }
 
         function showWithdrawModal() {
             // In a real app, this would open a modal with crypto withdrawal options
             showNotification('Withdraw feature coming soon! Enter your wallet address to receive your crypto.');
-
+            
             // In a real app, this would handle withdrawal requests and implement proper security measures
         }
     </script>
